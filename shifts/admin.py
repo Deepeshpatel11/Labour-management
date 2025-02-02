@@ -3,10 +3,13 @@ from .models import Shift, ShiftPattern
 
 @admin.register(Shift)
 class ShiftAdmin(admin.ModelAdmin):
-    list_display = ('name', 'shift_type', 'rotation_pattern')
-    list_filter = ('shift_type',)
+    list_display = ('name', 'start_date', 'cycle_length')
+    ordering = ('start_date',)
+    search_fields = ('name',)
 
 @admin.register(ShiftPattern)
 class ShiftPatternAdmin(admin.ModelAdmin):
-    list_display = ('shift', 'start_date', 'end_date')
-    list_filter = ('shift',)
+    list_display = ('shift', 'date', 'shift_type')
+    list_filter = ('shift', 'shift_type', 'date')
+    ordering = ('date',)
+    search_fields = ('shift__name', 'date')

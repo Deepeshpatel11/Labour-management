@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import timedelta
 
 class Shift(models.Model):
     SHIFT_CHOICES = [
@@ -8,22 +9,27 @@ class Shift(models.Model):
         ('Yellow', 'Yellow Shift'),
     ]
 
+    name = models.CharField(max_length=10, choices=SHIFT_CHOICES, unique=True)
+    start_date = models.DateField(help_text="The date when this shift starts")
+    cycle_length = models.PositiveIntegerField(default=16, help_text="Length of the shift cycle in days")
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class ShiftPattern(models.Model):
     SHIFT_TYPE_CHOICES = [
         ('Day', 'Day Shift'),
         ('Night', 'Night Shift'),
+        ('Off', 'Off'),
     ]
 
-    name = models.CharField(max_length=10, choices=SHIFT_CHOICES, unique=True)
-    shift_type = models.CharField(max_length=10, choices=SHIFT_TYPE_CHOICES)
-    rotation_pattern = models.CharField(max_length=20, default="4 on, 4 off")
-
-    def __str__(self):
-        return f"{self.name} ({self.shift_type})"
-
-class ShiftPattern(models.Model):
     shift = models.ForeignKey(Shift, on_delete=models.CASCADE)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    date = models.DateField(help_text="The actual date of this shift")
+    shift_type = models.CharField(max_length=10, choices=SHIFT_TYPE_CHOICES)
+
+    class Meta:
+        unique_together = ('shift', 'date')  # Ensures no duplicate shift records
 
     def __str__(self):
-        return f"{self.shift} from {self.start_date} to {self.end_date}"
+        return f"{self.shift.name} - {self.shift_type} - {self.date}"
