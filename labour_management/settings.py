@@ -32,12 +32,13 @@ SECRET_KEY = 'django-insecure-e!6$ejmaqr!tz8op1tj&du5ato4osab#*jj(i_^dz%vpvq*r06
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-deepeshpate-labourmanag-ohb12upun5j.ws.codeinstitute-ide.net"
+    "8000-deepeshpate-labourmanag-z1t3431nnnl.ws.codeinstitute-ide.net"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-deepeshpate-labourmanag-ohb12upun5j.ws.codeinstitute-ide.net"
+    "https://8000-deepeshpate-labourmanag-z1t3431nnnl.ws.codeinstitute-ide.net"
 ]
+
 
 
 # Application definition
