@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Custom Apps
     'shifts',
+    'employees',
 ]
 
 MIDDLEWARE = [
