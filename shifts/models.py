@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import timedelta
+from employees.models import Employee  # Import Employee model
+
 
 #Shift model
 class Shift(models.Model):
@@ -81,3 +83,11 @@ class WorkArea(models.Model):
     def __str__(self):
         return f"Line {self.line} - {self.name} - {self.subwork_area}"
 
+# Employee Allocation Model
+class EmployeeAllocation(models.Model):
+    employee = models.ForeignKey("employees.Employee", on_delete=models.CASCADE, help_text="Employee assigned to this work area.")
+    work_area = models.ForeignKey(WorkArea, on_delete=models.CASCADE, help_text="Work area where the employee is assigned.")
+    shift_pattern = models.ForeignKey(ShiftPattern, on_delete=models.CASCADE, help_text="Shift pattern for this allocation.")
+
+    def __str__(self):
+        return f"{self.employee} -> {self.work_area} ({self.shift_pattern})"

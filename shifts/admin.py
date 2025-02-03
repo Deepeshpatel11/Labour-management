@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Shift, ShiftPattern, WorkArea
+from .models import Shift, ShiftPattern, WorkArea, EmployeeAllocation
 
 @admin.register(Shift)
 class ShiftAdmin(admin.ModelAdmin):
@@ -20,3 +20,10 @@ class WorkAreaAdmin(admin.ModelAdmin):
     list_filter = ('line', 'name', 'task_type')
     ordering = ('line', 'name')
     search_fields = ('name', 'subwork_area', 'employee_type')
+
+@admin.register(EmployeeAllocation)
+class EmployeeAllocationAdmin(admin.ModelAdmin):
+    list_display = ('employee', 'work_area', 'shift_pattern')  # Fields to show in admin list view
+    list_filter = ('work_area', 'shift_pattern')  # Filters for easier navigation
+    search_fields = ('employee__first_name', 'employee__last_name', 'work_area__name')  # Search functionality
+    ordering = ('shift_pattern', 'employee')  # Order by shift pattern and employee
