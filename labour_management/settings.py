@@ -32,11 +32,13 @@ SECRET_KEY = 'django-insecure-e!6$ejmaqr!tz8op1tj&du5ato4osab#*jj(i_^dz%vpvq*r06
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-deepeshpate-labourmanag-qngl3snrqa6.ws.codeinstitute-ide.net"
+    "8000-deepeshpate-labourmanag-qngl3snrqa6.ws.codeinstitute-ide.net",
+    "8000-deepeshpate-labourmanag-qs9go1w0hbg.ws.codeinstitute-ide.net",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-deepeshpate-labourmanag-qngl3snrqa6.ws.codeinstitute-ide.net"
+    "https://8000-deepeshpate-labourmanag-qngl3snrqa6.ws.codeinstitute-ide.net",
+    "https://8000-deepeshpate-labourmanag-qs9go1w0hbg.ws.codeinstitute-ide.net",
 ]
 
 
@@ -70,7 +72,7 @@ ROOT_URLCONF = 'labour_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':[BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

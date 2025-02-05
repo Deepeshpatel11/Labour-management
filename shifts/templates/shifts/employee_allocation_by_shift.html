@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Employee Allocations for {{ shift }} Shift</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Role</th>
+            <th>Work Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for allocation in allocations %}
+        <tr>
+            <td>{{ allocation.employee }}</td>
+            <td>{{ allocation.employee.role }}</td>
+            <td>{{ allocation.work_area }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
